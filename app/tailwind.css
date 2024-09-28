@@ -1,12 +1,168 @@
-@tailwind base;
+@import 'tailwindcss/base';
+@import '@radix-ui/themes/styles.css';
+
 @tailwind components;
 @tailwind utilities;
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+	@media (prefers-color-scheme: dark) {
+		color-scheme: dark;
+	}
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+@layer utilities {
+	.font-zen-maru-gothic {
+		font-family: 'Zen Maru Gothic', sans-serif;
+	}
+
+	.dark,
+	.dark-theme {
+		--yellow-1: #13110b;
+		--yellow-2: #1c180f;
+		--yellow-3: #2c2207;
+		--yellow-4: #3c2a00;
+		--yellow-5: #483300;
+		--yellow-6: #564102;
+		--yellow-7: #695316;
+		--yellow-8: #856a1f;
+		--yellow-9: #ffc700;
+		--yellow-10: #f4bd00;
+		--yellow-11: #ffcc16;
+		--yellow-12: #fde8b3;
+
+		--yellow-a1: #bb110003;
+		--yellow-a2: #fba6000c;
+		--yellow-a3: #ffa7001d;
+		--yellow-a4: #fb99002f;
+		--yellow-a5: #ffa4003b;
+		--yellow-a6: #ffb7004a;
+		--yellow-a7: #fdc21e5f;
+		--yellow-a8: #fdc62d7d;
+		--yellow-a9: #ffc700;
+		--yellow-a10: #fec400f4;
+		--yellow-a11: #ffcc16;
+		--yellow-a12: #ffeab4fd;
+
+		--yellow-contrast: #2a2009;
+		--yellow-surface: #271f0e80;
+		--yellow-indicator: #ffc700;
+		--yellow-track: #ffc700;
+	}
+
+	@supports (color: color(display-p3 1 1 1)) {
+		@media (color-gamut: p3) {
+			.dark,
+			.dark-theme {
+				--yellow-1: oklch(17.8% 0.0126 88.01);
+				--yellow-2: oklch(21.1% 0.0179 88.01);
+				--yellow-3: oklch(25.7% 0.0436 88.01);
+				--yellow-4: oklch(29.6% 0.0713 88.01);
+				--yellow-5: oklch(33.7% 0.081 88.01);
+				--yellow-6: oklch(38.7% 0.0782 88.01);
+				--yellow-7: oklch(45.3% 0.0815 88.01);
+				--yellow-8: oklch(53.6% 0.0961 88.01);
+				--yellow-9: oklch(85.6% 0.1749 88.01);
+				--yellow-10: oklch(82.4% 0.1749 88.01);
+				--yellow-11: oklch(87.1% 0.1749 88.01);
+				--yellow-12: oklch(93.5% 0.0713 88.01);
+
+				--yellow-a1: color(display-p3 0.9412 0.0667 0 / 0.009);
+				--yellow-a2: color(display-p3 0.9804 0.7059 0 / 0.043);
+				--yellow-a3: color(display-p3 0.9922 0.698 0 / 0.106);
+				--yellow-a4: color(display-p3 0.9961 0.6706 0 / 0.169);
+				--yellow-a5: color(display-p3 1 0.6941 0 / 0.219);
+				--yellow-a6: color(display-p3 1 0.7608 0.0824 / 0.278);
+				--yellow-a7: color(display-p3 1 0.8039 0.2549 / 0.358);
+				--yellow-a8: color(display-p3 1 0.8196 0.3098 / 0.471);
+				--yellow-a9: color(display-p3 0.9961 0.8157 0.2745 / 0.963);
+				--yellow-a10: color(display-p3 1 0.8118 0.2745 / 0.916);
+				--yellow-a11: color(display-p3 0.9961 0.8314 0.298 / 0.967);
+				--yellow-a12: color(display-p3 1 0.9373 0.7451 / 0.975);
+
+				--yellow-contrast: #2a2009;
+				--yellow-surface: color(display-p3 0.1412 0.1176 0.0588 / 0.5);
+				--yellow-indicator: oklch(85.6% 0.1749 88.01);
+				--yellow-track: oklch(85.6% 0.1749 88.01);
+			}
+		}
+	}
+
+	.dark,
+	.dark-theme {
+		--gray-1: #111;
+		--gray-2: #191919;
+		--gray-3: #222223;
+		--gray-4: #2a2a2a;
+		--gray-5: #303132;
+		--gray-6: #393a3c;
+		--gray-7: #47484a;
+		--gray-8: #5e6062;
+		--gray-9: #6c6e70;
+		--gray-10: #7b7c7c;
+		--gray-11: #b2b4b6;
+		--gray-12: #eceef0;
+
+		--gray-a1: #00000000;
+		--gray-a2: #ffffff09;
+		--gray-a3: #eaeaf714;
+		--gray-a4: #ffffff1b;
+		--gray-a5: #edf4fb24;
+		--gray-a6: #ebf0fb2f;
+		--gray-a7: #f0f4fc3e;
+		--gray-a8: #f3f9ff57;
+		--gray-a9: #f5faff66;
+		--gray-a10: #fdffff73;
+		--gray-a11: #f9fcffb1;
+		--gray-a12: #fbfdffef;
+
+		--gray-contrast: #ffffff;
+		--gray-surface: rgba(0, 0, 0, 0.05);
+		--gray-indicator: #6c6e70;
+		--gray-track: #6c6e70;
+	}
+
+	@supports (color: color(display-p3 1 1 1)) {
+		@media (color-gamut: p3) {
+			.dark,
+			.dark-theme {
+				--gray-1: oklch(17.8% 0.0008 247.9);
+				--gray-2: oklch(21.3% 0.0004 247.9);
+				--gray-3: oklch(25.4% 0.0008 247.9);
+				--gray-4: oklch(28.3% 0 247.9);
+				--gray-5: oklch(31.3% 0.0023 247.9);
+				--gray-6: oklch(34.9% 0.0034 247.9);
+				--gray-7: oklch(40.2% 0.0034 247.9);
+				--gray-8: oklch(48.8% 0.0034 247.9);
+				--gray-9: oklch(53.8% 0.0034 247.9);
+				--gray-10: oklch(58.4% 0.0015 247.9);
+				--gray-11: oklch(77% 0.0034 247.9);
+				--gray-12: oklch(94.9% 0.0034 247.9);
+
+				--gray-a1: color(display-p3 0 0 0 / 0);
+				--gray-a2: color(display-p3 1 1 1 / 0.0336);
+				--gray-a3: color(display-p3 0.9451 0.9451 0.9961 / 0.076);
+				--gray-a4: color(display-p3 1 1 1 / 0.105);
+				--gray-a5: color(display-p3 0.9451 0.9725 1 / 0.139);
+				--gray-a6: color(display-p3 0.9333 0.9569 1 / 0.181);
+				--gray-a7: color(display-p3 0.949 0.9686 1 / 0.24);
+				--gray-a8: color(display-p3 0.9529 0.9765 1 / 0.341);
+				--gray-a9: color(display-p3 0.9608 0.9804 1 / 0.4);
+				--gray-a10: color(display-p3 0.9922 1 1 / 0.45);
+				--gray-a11: color(display-p3 0.9765 0.9882 1 / 0.694);
+				--gray-a12: color(display-p3 0.9843 0.9922 1 / 0.937);
+
+				--gray-contrast: #ffffff;
+				--gray-surface: color(display-p3 0 0 0 / 5%);
+				--gray-indicator: oklch(53.8% 0.0034 247.9);
+				--gray-track: oklch(53.8% 0.0034 247.9);
+			}
+		}
+	}
+
+	.dark,
+	.dark-theme,
+	:is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
+		--color-background: #111;
+	}
 }
