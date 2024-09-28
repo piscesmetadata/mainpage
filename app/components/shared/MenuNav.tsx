@@ -6,10 +6,10 @@ interface MenuNavProps {
 
 export default function MenuNav({ title }: MenuNavProps) {
 	return (
-		<nav className="font-bold">
+		<nav className="font-bold w-full">
 			<Flex
 				as="div"
-				className="flex items-center justify-between w-full absolute top-0 left-0"
+				className="flex items-center justify-between"
 				justify="between"
 			>
 				<Text color="yellow" size="5">

@@ -12,7 +12,7 @@ import type { LinksFunction, LoaderFunction } from '@remix-run/node';
 
 import tailwind from './tailwind.css?url';
 import { ThemeProvider } from 'next-themes';
-import { Theme } from '@radix-ui/themes';
+import { Flex, Theme } from '@radix-ui/themes';
 import MenuNav from '~/components/shared/MenuNav';
 
 export const loader: LoaderFunction = async () => {
@@ -84,13 +84,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 						radius="none"
 						scaling="105%"
 					>
-						<main className="min-h-screen h-full w-full max-w-screen overflow-x-hidden">
-							<div className="py-[42px] w-full relative h-full">
-								<header className="mx-auto max-w-[1200px] relative font-zen-maru-gothic">
+						<main className="min-h-screen h-full w-full max-w-[1440px] overflow-x-hidden mx-auto font-zen-maru-gothic">
+							<Flex
+								direction="column"
+								className="py-[42px] w-full h-full"
+								gapY="9"
+							>
+								<header className="mx-auto max-w-[1200px] w-full flex">
 									<MenuNav title={appName} />
 								</header>
-								{children}
-							</div>
+								<section className="flex-1 h-full w-full">{children}</section>
+							</Flex>
 						</main>
 					</Theme>
 				</ThemeProvider>
