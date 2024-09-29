@@ -1,4 +1,5 @@
-import { Box, Button, Card, Flex, Grid, Text } from '@radix-ui/themes';
+import { Button, Flex, Grid, Text } from '@radix-ui/themes';
+import CallToAction from './_components/Card__CallToAction';
 
 export default function Index() {
 	return (
@@ -12,8 +13,7 @@ export default function Index() {
 		>
 			<Flex
 				direction="column"
-				className="w-full bg-zinc-800 p-[1.588rem] md:p-[3.188rem] rounded-3xl"
-				style={{ gridColumn: 'span 7' }}
+				className="w-full bg-zinc-800 p-[1.588rem] md:p-[3.188rem] rounded-3xl col-span-12 lg:col-span-7 gap-1"
 				justify="between"
 			>
 				<Text
@@ -27,84 +27,93 @@ export default function Index() {
 				>
 					Queremos ser tu aliado estratégico en la transformación digital
 				</Text>
-				<Flex gapX="9">
+				<Flex gapX="9" className="mt-6 bounds:mt-0">
 					<Flex direction="column" gap="2">
-						<Text color="yellow" className="text-5xl">
-							Business Growth Plan
-						</Text>
-						<Text weight="light" size="6">
-							Queremos involucrarnos en el crecimiento de tu negocio a nivel
-							operativo y tecnológico.
+						<Flex gapX="3" align="center" className="bounds:mt-4">
+							<Text color="yellow" className="text-3xl bounds:text-5xl">
+								Business Growth Plan
+							</Text>
+							<svg className="h-[28px] w-[33px] sm:h-12 sm:w-16 bounds:h-auto bounds:w-auto">
+								<use
+									href="/sprites.svg#decorator_1"
+									className="text-yellow-9"
+								/>
+							</svg>
+						</Flex>
+
+						<Text
+							weight="light"
+							size={{
+								initial: '3',
+								md: '5',
+							}}
+							asChild
+							className="sm:mt-4 bounds:mt-0"
+						>
+							<span>
+								Queremos involucrarnos en el{' '}
+								<mark className="bg-yellow-9 font-medium">
+									crecimiento de tu negocio
+								</mark>{' '}
+								a nivel operativo y tecnológico.
+							</span>
 						</Text>
 					</Flex>
-					<svg>
-						<use href="/sprites.svg#decorator_1" className="text-yellow-9" />
-					</svg>
 				</Flex>
-				<Flex justify="between" align="center">
+				<Flex justify="between" align="center" className="mt-4 bounds:mt-8">
 					<Text
 						className="max-w-[31.375rem]"
 						color="yellow"
 						weight="medium"
-						size="4"
+						size={{
+							initial: '3',
+							md: '4',
+						}}
 						asChild
 					>
 						<span>
-							El software personalizado está transformando radicalmente la
-							manera en que las empresas optimizan sus procesos, integrando
+							El software a la medida está transformando radicalmente la manera
+							en que las empresas optimizan sus procesos, integrando
 							herramientas que automatizan y agilizan sus operaciones
 							comerciales de forma eficiente.
 						</span>
 					</Text>
-					<Button>Solicite información</Button>
+					<Button className="hidden sm:block">Solicite información</Button>
 				</Flex>
 			</Flex>
 			<Flex
-				direction="column"
-				className="w-full h-full pt-[5.875rem]"
-				style={{ gridColumn: 'span 5' }}
-				gap="1"
+				className="w-full h-full mt-1 lg:mt-0 lg:pt-[5.875rem] col-span-12 lg:col-span-5 md:gap-1 relative"
+				direction={{
+					initial: 'column-reverse',
+					sm: 'row',
+					md: 'column',
+				}}
 			>
+				<CallToAction
+					title="Innovación"
+					description="Alcanzado a través de una variedad de métodos, incluyendo la
+						experimentación y la resolución creativa de problemas."
+					extraClasses="relative -top-16 md:-top-0 text-pink-9 z-10"
+				/>
 				<Flex
-					className="bg-white rounded-3xl p-[2.188rem] max-h-[15.875rem] h-full"
-					direction="column"
-					justify="between"
-					gapY="7"
+					gap="1"
+					direction={{
+						initial: 'column-reverse',
+						sm: 'column',
+						md: 'row',
+					}}
 				>
-					<Text className="text-pink-9 max-w-[25.625rem]" weight="medium">
-						Alcanzado a través de una variedad de métodos, incluyendo la
-						experimentación y la resolución creativa de problemas.
-					</Text>
-					<Text className="text-pink-9 tracking-tighter" size="7">
-						Innovación
-					</Text>
-				</Flex>
-				<Flex className="h-full" gapX="1">
-					<Flex
-						direction="column"
-						justify="between"
-						className="bg-blue-9 rounded-3xl p-[2.188rem] pr-[2.988rem]"
-						gapY="6"
-					>
-						<Text className="max-w-[25.625rem]" weight="medium">
-							Deja de preocuparte por la eficiencia de tu negocio.
-						</Text>
-						<Text className="tracking-tighter" size="7">
-							Automatización
-						</Text>
-					</Flex>
-					<Flex
-						direction="column"
-						justify="between"
-						className="bg-pink-9 rounded-3xl p-[2.188rem]"
-					>
-						<Text weight="medium">
-							Brinda nuevas experiencias a tus clientes.
-						</Text>
-						<Text className="tracking-tighter" size="7">
-							Transformación
-						</Text>
-					</Flex>
+					<CallToAction
+						color="blue"
+						title="Automatización"
+						description="Deja de preocuparte por la eficiencia de tu negocio."
+						extraClasses="relative -top-8 md:-top-0"
+					/>
+					<CallToAction
+						color="pink"
+						title="Transformación"
+						description="Brinda nuevas experiencias a tus clientes."
+					/>
 				</Flex>
 			</Flex>
 		</Grid>
