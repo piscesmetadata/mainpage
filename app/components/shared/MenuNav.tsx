@@ -6,40 +6,37 @@ interface MenuNavProps {
 }
 
 export default function MenuNav({ title }: MenuNavProps) {
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-	const sidebarRef = useRef<HTMLDivElement>(null);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const menuRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (isSidebarOpen) {
-			document.body.style.overflow = 'hidden';
-		} else {
-			document.body.style.overflow = 'unset';
-		}
-
 		const handleOutsideClick = (event: MouseEvent) => {
 			if (
-				sidebarRef.current &&
-				!sidebarRef.current.contains(event.target as Node) &&
+				menuRef.current &&
+				!menuRef.current.contains(event.target as Node) &&
 				!(event.target as Element).closest('button')
 			) {
-				setIsSidebarOpen(false);
+				setIsMenuOpen(false);
 			}
 		};
 
-		document.addEventListener('mousedown', handleOutsideClick);
+		if (isMenuOpen) {
+			document.addEventListener('mousedown', handleOutsideClick);
+			document.body.style.overflow = 'hidden';
+		}
 
 		return () => {
-			document.body.style.overflow = 'unset';
 			document.removeEventListener('mousedown', handleOutsideClick);
+			document.body.style.overflow = 'unset';
 		};
-	}, [isSidebarOpen]);
+	}, [isMenuOpen]);
 
-	const toggleSidebar = () => {
-		setIsSidebarOpen(!isSidebarOpen);
+	const toggleMenu = () => {
+		setIsMenuOpen(!isMenuOpen);
 	};
 
 	return (
-		<nav className="font-bold w-full">
+		<nav className="font-bold w-full relative">
 			<Flex
 				as="div"
 				className="flex items-center justify-between px-4 py-2"
@@ -49,8 +46,8 @@ export default function MenuNav({ title }: MenuNavProps) {
 					{title}
 				</Text>
 
-				<button className="md:hidden z-50" onClick={toggleSidebar}>
-					{isSidebarOpen ? '✕' : '☰'}
+				<button className="md:hidden z-50" onClick={toggleMenu}>
+					{isMenuOpen ? '✕' : '☰'}
 				</button>
 
 				<Flex gap="7" className="hidden md:flex">
@@ -76,37 +73,31 @@ export default function MenuNav({ title }: MenuNavProps) {
 				</Button>
 			</Flex>
 
-			{isSidebarOpen && (
+			{/* Overlay */}
+			{isMenuOpen && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden" />
 			)}
 
+			{/* Menú móvil desplegable */}
 			<div
-				ref={sidebarRef}
-				className={`fixed top-0 right-0 h-screen w-64 bg-zinc-800 p-4 transform ${
-					isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
-				} transition-transform duration-300 ease-in-out md:hidden z-40`}
+				ref={menuRef}
+				className={`absolute top-full left-0 right-0 bg-zinc-800 overflow-hidden transition-all duration-300 ease-in-out md:hidden z-40 ${
+					isMenuOpen ? 'max-h-96' : 'max-h-0'
+				}`}
 			>
-				<Flex direction="column" gap="4" className="h-full">
-					<div className="mt-16">
-						<Link href="/">
-							<Text className="text-gray-12">About</Text>
-						</Link>
-					</div>
-					<div>
-						<Link href="/">
-							<Text className="text-gray-12">Projects</Text>
-						</Link>
-					</div>
-					<div>
-						<Link href="/">
-							<Text className="text-gray-12">Contact</Text>
-						</Link>
-					</div>
-					<div className="mt-auto mb-8">
-						<Button radius="full" className="font-bold w-full">
-							Solicite información
-						</Button>
-					</div>
+				<Flex direction="column" gap="4" className="p-4">
+					<Link href="/">
+						<Text className="text-gray-12">About</Text>
+					</Link>
+					<Link href="/">
+						<Text className="text-gray-12">Projects</Text>
+					</Link>
+					<Link href="/">
+						<Text className="text-gray-12">Contact</Text>
+					</Link>
+					<Button radius="full" className="font-bold mt-4">
+						Solicite información
+					</Button>
 				</Flex>
 			</div>
 		</nav>

@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority';
 import { cn } from '~/lib/utils';
 
 const cardToActionVariants = cva(
-	'rounded-3xl pt-[1.125rem] px-[1.125rem] pb-[2.188rem] h-auto flex-1',
+	'rounded-3xl pt-[1.125rem] px-[1.125rem] pb-[4.188rem] md:pb-[2.188rem] h-auto flex-1',
 	{
 		variants: {
 			color: {

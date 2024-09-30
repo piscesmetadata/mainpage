@@ -1,4 +1,4 @@
-import { Button, Flex, Grid, Text } from '@radix-ui/themes';
+import { Box, Button, Flex, Grid, Text } from '@radix-ui/themes';
 import CallToAction from './_components/Card__CallToAction';
 
 export default function Index() {
@@ -93,7 +93,7 @@ export default function Index() {
 					title="Innovación"
 					description="Alcanzado a través de una variedad de métodos, incluyendo la
 						experimentación y la resolución creativa de problemas."
-					extraClasses="relative -top-16 md:-top-0 text-pink-9 z-10"
+					extraClasses="relative -top-16 md:-top-0 text-pink-9 z-10 pb-[2.188rem]"
 				/>
 				<Flex
 					gap="1"
@@ -115,6 +115,53 @@ export default function Index() {
 						description="Brinda nuevas experiencias a tus clientes."
 					/>
 				</Flex>
+			</Flex>
+			<Flex
+				direction="column"
+				className="w-full h-full p-[1.588rem] md:p-[3.188rem] rounded-3xl col-span-12 md:col-start-2 md:col-span-10"
+			>
+				<Grid columns="10" gap="1" className="border-b pb-8">
+					<Text className="col-span-5 text-5xl tracking-tighter">
+						Ofrecemos una gama de soluciones innovadoras
+					</Text>
+					<Text className="col-span-5 my-auto">
+						Una solución para cada necesidad, desde la{' '}
+						<mark className="bg-yellow-9 font-medium">
+							automatización de procesos
+						</mark>{' '}
+						hasta la{' '}
+						<mark className="bg-yellow-9 font-medium">
+							transformación digital
+						</mark>
+						.
+					</Text>
+				</Grid>
+				<Grid columns="10" gap="1" className="pt-8 border-t">
+					<div className="col-span-5">
+						<Flex
+							direction="row"
+							className="border rounded-full p-2"
+							align="center"
+							// justify="center"
+						>
+							<Text>Innovación</Text>
+							<svg className="text-white h-6 w-6">
+								<use href="/sprites.svg#star" />
+							</svg>
+						</Flex>
+					</div>
+					<Flex direction="column" gap="2" className="col-span-5">
+						<Text size="7" className="tracking-tighter">
+							Nuestra especialidad
+						</Text>
+						<Text>
+							Nuestro equipo de expertos en transformación digital trabaja
+							estrechamente con nuestros clientes para entender sus necesidades
+							específicas y desarrollar soluciones personalizadas que les
+							permitan alcanzar sus objetivos.
+						</Text>
+					</Flex>
+				</Grid>
 			</Flex>
 		</Grid>
 	);
