@@ -138,16 +138,23 @@ export default function Index() {
 				</Grid>
 				<Grid columns="10" gap="1" className="pt-8 border-t">
 					<div className="col-span-5">
-						<Flex
-							direction="row"
-							className="border rounded-full p-2"
-							align="center"
-							// justify="center"
-						>
-							<Text>Innovación</Text>
-							<svg className="text-white h-6 w-6">
-								<use href="/sprites.svg#star" />
-							</svg>
+						<Flex direction="row" align="center" gap="2">
+							<Flex align="center" gap="2" className="border rounded-full p-2">
+								<Text>Innovación</Text>
+								<svg className="text-white h-6 w-6">
+									<use href="/sprites.svg#star" />
+								</svg>
+							</Flex>
+
+							<Flex align="center" gap="2" className="border rounded-full p-2">
+								<Text>Innovación</Text>
+								<svg className="text-white h-6 w-6 flex m-auto ">
+									<use
+										href="/sprites.svg#star"
+										className="flex m-auto w-full h-full"
+									/>
+								</svg>
+							</Flex>
 						</Flex>
 					</div>
 					<Flex direction="column" gap="2" className="col-span-5">
