@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Button, Flex, Link, Text } from '@radix-ui/themes';
+import { CommonComponentProps } from '~/lib/interfaces/CommonTypes';
 
-interface MenuNavProps {
-	title: string;
-}
+type MenuNavProps = Pick<CommonComponentProps, 'title'>;
 
 export default function MenuNav({ title }: MenuNavProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);

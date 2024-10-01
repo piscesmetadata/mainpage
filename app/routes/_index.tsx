@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Grid, Text } from '@radix-ui/themes';
 import CallToAction from './_components/Card__CallToAction';
+import PrettyChips from '~/components/shared/PrettyChips';
 
 export default function Index() {
 	return (
@@ -138,23 +139,12 @@ export default function Index() {
 				</Grid>
 				<Grid columns="10" gap="1" className="pt-8 border-t">
 					<div className="col-span-5">
-						<Flex direction="row" align="center" gap="2">
-							<Flex align="center" gap="2" className="border rounded-full p-2">
-								<Text>Innovación</Text>
-								<svg className="text-white h-6 w-6">
-									<use href="/sprites.svg#star" />
-								</svg>
-							</Flex>
-
-							<Flex align="center" gap="2" className="border rounded-full p-2">
-								<Text>Innovación</Text>
-								<svg className="text-white h-6 w-6 flex m-auto ">
-									<use
-										href="/sprites.svg#star"
-										className="flex m-auto w-full h-full"
-									/>
-								</svg>
-							</Flex>
+						<Flex direction="row" align="center" gap="2" className="flex-wrap">
+							<PrettyChips title="Innovación" />
+							<PrettyChips title="Automatización" />
+							<PrettyChips title="Transformación" />
+							<PrettyChips title="Experiencia de usuario" />
+							<PrettyChips title="IA Generativa" />
 						</Flex>
 					</div>
 					<Flex direction="column" gap="2" className="col-span-5">
