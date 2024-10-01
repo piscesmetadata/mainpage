@@ -4,6 +4,11 @@ import { CommonComponentProps } from '~/lib/interfaces/CommonTypes';
 
 type MenuNavProps = Pick<CommonComponentProps, 'title'>;
 
+/**
+ * MenuNav component
+ * @param {string} title - The title of the menu
+ * @returns {React.ReactNode} - The MenuNav component
+ */
 export default function MenuNav({ title }: MenuNavProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);

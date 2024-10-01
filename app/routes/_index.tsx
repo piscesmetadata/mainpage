@@ -1,7 +1,12 @@
-import { Box, Button, Flex, Grid, Text } from '@radix-ui/themes';
+import { Button, Flex, Grid, Text } from '@radix-ui/themes';
 import CallToAction from './_components/Card__CallToAction';
-import PrettyChips from '~/components/shared/PrettyChips';
+import PrettyChip from '~/components/shared/PrettyChips';
 
+/**
+ * Index page.
+ * Can be accessed at http://localhost:3000/ as example.
+ * @returns {React.ReactNode} - The Index page
+ */
 export default function Index() {
 	return (
 		<Grid
@@ -140,11 +145,11 @@ export default function Index() {
 				<Grid columns="10" gap="1" className="pt-8 border-t">
 					<div className="col-span-5">
 						<Flex direction="row" align="center" gap="2" className="flex-wrap">
-							<PrettyChips title="Innovación" />
-							<PrettyChips title="Automatización" />
-							<PrettyChips title="Transformación" />
-							<PrettyChips title="Experiencia de usuario" />
-							<PrettyChips title="IA Generativa" />
+							<PrettyChip title="Innovación" />
+							<PrettyChip title="Automatización" />
+							<PrettyChip title="Transformación" />
+							<PrettyChip title="Experiencia de usuario" />
+							<PrettyChip title="IA Generativa" />
 						</Flex>
 					</div>
 					<Flex direction="column" gap="2" className="col-span-5">
