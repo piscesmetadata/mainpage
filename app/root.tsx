@@ -12,7 +12,7 @@ import type { LinksFunction, LoaderFunction } from '@remix-run/node';
 
 import tailwind from './tailwind.css?url';
 import { ThemeProvider } from 'next-themes';
-import { Flex, Theme } from '@radix-ui/themes';
+import { Flex, Grid, Theme } from '@radix-ui/themes';
 import MenuNav from '~/components/shared/MenuNav';
 
 export const loader: LoaderFunction = async () => {
@@ -90,9 +90,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
 								className="py-[42px] w-full h-full"
 								gapY="9"
 							>
-								<header className="mx-auto max-w-[1200px] w-full flex">
-									<MenuNav title={appName} />
-								</header>
+								<Grid
+									columns={{
+										initial: '1',
+										md: '12',
+									}}
+									className="w-full h-full"
+									gapX="1"
+								>
+									<div className="col-span-12 md:col-start-2 md:col-span-10 px-[1.588rem] md:px-[3.188rem]">
+										<MenuNav title={appName} />
+									</div>
+								</Grid>
 								<section className="flex-1 h-full w-full">{children}</section>
 							</Flex>
 						</main>
