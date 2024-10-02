@@ -98,7 +98,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 									className="w-full h-full"
 									gapX="1"
 								>
-									<div className="col-span-12 md:col-start-2 md:col-span-10 px-[1.588rem] md:px-[3.188rem]">
+									<div className="col-span-12 lg:col-start-2 md:col-span-10 px-[1.588rem] md:px-[3.188rem]">
 										<MenuNav title={appName} />
 									</div>
 								</Grid>
