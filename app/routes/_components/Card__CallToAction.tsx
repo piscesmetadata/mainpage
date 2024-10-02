@@ -1,7 +1,12 @@
 import { Flex, Text } from '@radix-ui/themes';
 import { cva } from 'class-variance-authority';
+import { CommonComponentProps } from '~/lib/interfaces/CommonTypes';
 import { cn } from '~/lib/utils';
 
+/**
+ * cardToActionVariants is a cva function that creates a set of classes for the CallToAction component.
+ * It is used to style the component based on the color prop.
+ */
 const cardToActionVariants = cva(
 	'rounded-3xl pt-[1.125rem] px-[1.125rem] pb-[4.188rem] md:pb-[2.188rem] h-auto flex-1',
 	{
@@ -18,13 +23,29 @@ const cardToActionVariants = cva(
 	}
 );
 
-interface CallToActionProps {
-	title: string;
-	description: string;
+/**
+ * CallToActionProps interface
+ * @interface CallToActionProps
+ * @property {string} title - The title of the card
+ * @property {string} description - The description of the card
+ * @property {string} color - The color of the card
+ * @property {string} extraClasses - The extra classes of the card
+ */
+type CallToActionProps = Pick<
+	CommonComponentProps,
+	'title' | 'description' | 'extraClasses'
+> & {
 	color?: 'blue' | 'pink' | 'white';
-	extraClasses?: string;
-}
+};
 
+/**
+ * CallToAction component
+ * @param {string} title - The title of the card
+ * @param {string} description - The description of the card
+ * @param {string} color - The color of the card
+ * @param {string} extraClasses - The extra classes of the card
+ * @returns {React.ReactNode} - The CallToAction component
+ */
 export default function CallToAction({
 	title,
 	description,

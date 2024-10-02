@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { Button, Flex, Link, Text } from '@radix-ui/themes';
+import { CommonComponentProps } from '~/lib/interfaces/CommonTypes';
 
-interface MenuNavProps {
-	title: string;
-}
+type MenuNavProps = Pick<CommonComponentProps, 'title'>;
 
+/**
+ * MenuNav component
+ * @param {string} title - The title of the menu
+ * @returns {React.ReactNode} - The MenuNav component
+ */
 export default function MenuNav({ title }: MenuNavProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
@@ -50,7 +54,7 @@ export default function MenuNav({ title }: MenuNavProps) {
 					{isMenuOpen ? '✕' : '☰'}
 				</button>
 
-				<Flex gap="7" className="hidden md:flex">
+				<Flex gap="7" className="hidden">
 					<span>
 						<Link href="/">
 							<Text className="text-gray-12">About</Text>
@@ -68,7 +72,7 @@ export default function MenuNav({ title }: MenuNavProps) {
 					</span>
 				</Flex>
 
-				<Button radius="full" className="font-bold hidden md:block">
+				<Button radius="full" className="font-bold hidden">
 					Solicite información
 				</Button>
 			</Flex>
