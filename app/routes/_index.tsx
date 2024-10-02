@@ -68,7 +68,7 @@ export default function Index() {
 				</Flex>
 				<Flex justify="between" align="center" className="mt-4 bounds:mt-8">
 					<Text
-						className="max-w-[31.375rem]"
+						//className="max-w-[31.375rem]"
 						color="yellow"
 						weight="medium"
 						size={{
@@ -84,7 +84,7 @@ export default function Index() {
 							comerciales de forma eficiente.
 						</span>
 					</Text>
-					<Button className="hidden sm:block">Solicite información</Button>
+					<Button className="hidden">Solicite información</Button>
 				</Flex>
 			</Flex>
 			<Flex
@@ -127,23 +127,22 @@ export default function Index() {
 				className="w-full h-full p-[1.588rem] md:p-[3.188rem] rounded-3xl col-span-12 md:col-start-2 md:col-span-10"
 			>
 				<Grid columns="10" gap="1" className="border-b pb-8">
-					<Text className="col-span-5 text-5xl tracking-tighter">
-						Ofrecemos una gama de soluciones innovadoras
+					<Text className="col-span-12 md:col-span-5 text-3xl bounds:text-5xl tracking-tighter">
+						Una solución para cada necesidad de tu negocio
 					</Text>
-					<Text className="col-span-5 my-auto">
-						Una solución para cada necesidad, desde la{' '}
-						<mark className="bg-yellow-9 font-medium">
-							automatización de procesos
-						</mark>{' '}
-						hasta la{' '}
-						<mark className="bg-yellow-9 font-medium">
-							transformación digital
-						</mark>
-						.
+					<Text
+						className="col-span-12 md:col-span-5 my-auto"
+						size={{
+							initial: '4',
+						}}
+					>
+						Creemos firmemente que la tecnología es una herramienta poderosa que
+						puede transformar la forma en que las empresas operan y se
+						relacionan con sus clientes.
 					</Text>
 				</Grid>
 				<Grid columns="10" gap="1" className="pt-8 border-t">
-					<div className="col-span-5">
+					<div className="col-span-12 md:col-span-5">
 						<Flex direction="row" align="center" gap="2" className="flex-wrap">
 							<PrettyChip title="Innovación" />
 							<PrettyChip title="Automatización" />
@@ -152,7 +151,11 @@ export default function Index() {
 							<PrettyChip title="IA Generativa" />
 						</Flex>
 					</div>
-					<Flex direction="column" gap="2" className="col-span-5">
+					<Flex
+						direction="column"
+						gap="2"
+						className="col-span-12 md:col-span-5"
+					>
 						<Text size="7" className="tracking-tighter">
 							Nuestra especialidad
 						</Text>
