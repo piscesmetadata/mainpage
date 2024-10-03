@@ -21,8 +21,7 @@ steps:
       - 'BUILD_ID=$BUILD_ID'
       - '_REGION=$_REGION'
       - '_SERVICE_NAME=$_SERVICE_NAME'
-      - '_IMAGE=$_IMAGE_SHA'
-
+      - '_REFERENCE_DIGEST=$_IMAGE_SHA'
 images:
   - '${_IMAGE_SHA}'
   - '${_IMAGE_LATEST}'
