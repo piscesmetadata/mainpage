@@ -39,7 +39,7 @@ spec:
             failureThreshold: 1
             tcpSocket:
               port: 8080
-        - image: IMAGE_NAME
+        - image: '{image-placeholder}:latest'
           name: app
           env:
             - name: PORT
