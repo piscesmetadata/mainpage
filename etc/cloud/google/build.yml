@@ -10,22 +10,18 @@ steps:
       - '--all-tags'
     id: Push
 
-  - id: 'Deploying as a Cloud Run service'
-    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args:
-      - 'run'
-      - 'deploy'
-      - '${_SERVICE_NAME}'
-      - '--image'
-      - '${_IMAGE_SHA}'
-      - '--region'
-      - '${_DEPLOY_REGION}'
-      - '--platform'
-      - '${_PLATFORM}'
-      - '--allow-unauthenticated'
-      - '--port'
-      - '8080'
+  - id: 'Configuring as multicontainer Cloud Run service'
+    waitFor: ['Push']
+    name: 'gcr.io/cloud-builders/gcloud'
+    script: |
+      #!/bin/bash
+      echo "Running entrypoint script..."
+      ./etc/bin/deploy.sh || touch /workspace/deploy-failed
+    env:
+      - 'BUILD_ID=$BUILD_ID'
+      - '_REGION=$_REGION'
+      - '_SERVICE_NAME=$_SERVICE_NAME'
+      - '_IMAGE=$_IMAGE_SHA'
 
 images:
   - '${_IMAGE_SHA}'

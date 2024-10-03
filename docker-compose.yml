@@ -2,6 +2,6 @@ services:
   piscesmetadata:
     build: .
     ports:
-      - '80:80'
+      - '3001:3000'
     env_file:
       - .env
