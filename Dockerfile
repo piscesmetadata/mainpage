@@ -1,5 +1,8 @@
 FROM node:alpine as node-builder
 
+LABEL maintainer="François López <francois@piscesmetadata.com>"
+LABEL description="Pisces Metadata Website Dockerfile for production. This image is based on Node.js Alpine Linux powered by Remix and Tailwind CSS."
+
 ENV WORKDIR /usr/local/piscesmetadata
 
 WORKDIR $WORKDIR
@@ -9,28 +12,17 @@ COPY . .
 RUN yarn install
 RUN yarn build
 
-FROM nginx:alpine as production
+FROM node:alpine as production
 
-RUN apk update && \
-    apk upgrade && \
-    apk add --no-cache bash 
+ENV WORKDIR /app
 
-COPY --from=node-builder /usr/lib /usr/lib
-COPY --from=node-builder /usr/local/lib /usr/local/lib
-COPY --from=node-builder /usr/local/include /usr/local/include
-COPY --from=node-builder /usr/local/bin /usr/local/bin
+WORKDIR $WORKDIR
 
-RUN npm install --global --force yarn
+COPY --from=node-builder /usr/local/piscesmetadata/build $WORKDIR/build
+COPY --from=node-builder /usr/local/piscesmetadata/package.json $WORKDIR/
+COPY --from=node-builder /usr/local/piscesmetadata/yarn.lock $WORKDIR/
+COPY --from=node-builder /usr/local/piscesmetadata/node_modules $WORKDIR/node_modules
 
-COPY --from=node-builder /usr/local/piscesmetadata/build /var/www/html/build
-COPY --from=node-builder /usr/local/piscesmetadata/etc/nginx/remix.conf /etc/nginx/conf.d/default.conf
-COPY --from=node-builder /usr/local/piscesmetadata/node_modules /var/www/html/node_modules
-COPY --from=node-builder /usr/local/piscesmetadata/package.json /var/www/html/package.json
-COPY --from=node-builder /usr/local/piscesmetadata/yarn.lock /var/www/html/yarn.lock
-
-WORKDIR /var/www/html
-
-EXPOSE 8080
 EXPOSE 3000
 
-CMD ["sh", "-c", "yarn --cwd /var/www/html start & nginx -g 'daemon off;'"]
+CMD ["yarn", "start"]
