@@ -1,0 +1,51 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['pull', $_IMAGE_LATEST]
+    id: 'Pull latest image from registry'
+    waitFor: ['-']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', '${_IMAGE_SHA}', '-t', '${_IMAGE_LATEST}', '.']
+    waitFor: ['Pull latest image from registry']
+    id: Build
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - '${_IMAGE}'
+      - '--all-tags'
+    id: Push
+
+  - id: 'Deploying as a Cloud Run service'
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image'
+      - '${_IMAGE_SHA}'
+      - '--region'
+      - '${_DEPLOY_REGION}'
+      - '--platform'
+      - '${_PLATFORM}'
+      - '--allow-unauthenticated'
+
+images:
+  - '${_IMAGE_SHA}'
+  - '${_IMAGE_LATEST}'
+options:
+  dynamic_substitutions: true
+  logging: CLOUD_LOGGING_ONLY
+substitutions:
+  _DEPLOY_REGION: us-central1
+  _GCR_HOSTNAME: us-docker.pkg.dev
+  _PLATFORM: managed
+  _SERVICE_NAME: piscesmetadata-mainpage
+  _IMAGE: 'us-docker.pkg.dev/www-central/piscesmetadata'
+  _IMAGE_SHA: '${_IMAGE}:${COMMIT_SHA}'
+  _IMAGE_LATEST: '${_IMAGE}:latest'
+  _CLOUDSDK_COMPUTE_ZONE: 'us-central1-a'
+  _CLOUDSDK_COMPUTE_REGION: 'us-central1-a'
+tags:
+  - piscesmetadata
