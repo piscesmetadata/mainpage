@@ -39,7 +39,7 @@ spec:
             failureThreshold: 1
             tcpSocket:
               port: 8080
-        - image: '{image-placeholder}:latest'
+        - image: us-docker.pkg.dev/www-central/piscesmetadata/mainpage:latest
           name: app
           env:
             - name: PORT
