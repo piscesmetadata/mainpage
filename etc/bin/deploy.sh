@@ -1,10 +1,11 @@
 set -eux pipefail
 
 export MC_SERVICE_NAME="${_SERVICE_NAME}-$BUILD_ID"
+export MC_IMAGE="${_IMAGE}"
 
 # Substituting the env vars in cloud run yaml file
 
-sed -i -e -e s/IMAGE_NAME/${_REFERENCE_DIGEST}/g -e s/MC_SERVICE_NAME/${MC_SERVICE_NAME}/g -e s/REGION/${_REGION}/g service.yaml
+sed -i -e s/{image-placeholder}/${MC_IMAGE}/g -e s/MC_SERVICE_NAME/${MC_SERVICE_NAME}/g -e s/REGION/${_REGION}/g service.yaml
 # Note that nginx_mainpage_config secret has already been created within project.
 # Deploy multi-container service that includes nginx proxy.
 gcloud run services replace service.yaml --region ${_REGION} --quiet
