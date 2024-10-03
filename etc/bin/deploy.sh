@@ -1,6 +1,6 @@
 set -eux pipefail
 
-export MC_SERVICE_NAME="${_SERVICE_NAME}-$BUILD_ID"
+export MC_SERVICE_NAME="${_SERVICE_NAME}"
 export MC_IMAGE="${_IMAGE}"
 
 # Substituting the env vars in cloud run yaml file
