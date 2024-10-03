@@ -34,7 +34,7 @@ substitutions:
   _DEPLOY_REGION: us-central1
   _GCR_HOSTNAME: us-docker.pkg.dev
   _PLATFORM: managed
-  _SERVICE_NAME: piscesmetadata-mainpage
+  _SERVICE_NAME: mainpage
   _IMAGE: 'us-docker.pkg.dev/www-central/piscesmetadata/mainpage'
   _IMAGE_SHA: '${_IMAGE}:${COMMIT_SHA}'
   _IMAGE_LATEST: '${_IMAGE}:latest'
