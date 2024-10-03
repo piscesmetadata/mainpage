@@ -5,11 +5,11 @@ export MC_IMAGE="${_IMAGE}"
 
 # Substituting the env vars in cloud run yaml file
 
-sed -i -e s/MC_SERVICE_NAME/${MC_SERVICE_NAME}/g -e s/REGION/${_REGION}/g service.yml
-sed -i "s,{image-placeholder},${MC_IMAGE}," service.yml
+sed -i -e s/MC_SERVICE_NAME/${MC_SERVICE_NAME}/g -e s/REGION/${_REGION}/g "./cloud/google/service.yml"
+sed -i "s,{image-placeholder},${MC_IMAGE}," "./cloud/google/service.yml"
 # Note that nginx_mainpage_config secret has already been created within project.
 # Deploy multi-container service that includes nginx proxy.
-gcloud run services replace service.yaml --region ${_REGION} --quiet
+gcloud run services replace ./cloud/google/service.yml --region ${_REGION} --quiet
 
 # Wait till deployment completes
 sleep 10

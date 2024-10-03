@@ -12,11 +12,12 @@ steps:
 
   - id: 'Configuring as multicontainer Cloud Run service'
     waitFor: ['Push']
+    dir: $_ETC_DIR
     name: 'gcr.io/cloud-builders/gcloud'
     script: |
       #!/bin/bash
       echo "Running entrypoint script..."
-      ./etc/bin/deploy.sh || touch /workspace/deploy-failed
+      ./bin/deploy.sh || touch /workspace/deploy-failed
     env:
       - 'BUILD_ID=$BUILD_ID'
       - '_REGION=$_REGION'
@@ -29,6 +30,7 @@ options:
   dynamic_substitutions: true
   logging: CLOUD_LOGGING_ONLY
 substitutions:
+  _ETC_DIR: etc
   _DEPLOY_REGION: us-central1
   _GCR_HOSTNAME: us-docker.pkg.dev
   _PLATFORM: managed
