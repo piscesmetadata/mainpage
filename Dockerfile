@@ -30,6 +30,7 @@ COPY --from=node-builder /usr/local/piscesmetadata/yarn.lock /var/www/html/yarn.
 
 WORKDIR /var/www/html
 
-EXPOSE 80
+EXPOSE 8080
+EXPOSE 3000
 
 CMD ["sh", "-c", "yarn --cwd /var/www/html start & nginx -g 'daemon off;'"]

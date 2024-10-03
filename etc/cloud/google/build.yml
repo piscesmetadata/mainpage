@@ -24,6 +24,8 @@ steps:
       - '--platform'
       - '${_PLATFORM}'
       - '--allow-unauthenticated'
+      - '--port'
+      - '8080'
 
 images:
   - '${_IMAGE_SHA}'
