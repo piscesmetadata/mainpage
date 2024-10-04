@@ -44,6 +44,28 @@ spec:
           env:
             - name: PORT
               value: '3000'
+            - name: NODE_ENV
+              value: 'production'
+            - name: APP_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: latest
+                  name: app_mainpage_env_appname
+            - name: GOOGLE_TAG_MANAGER
+              valueFrom:
+                secretKeyRef:
+                  key: latest
+                  name: app_mainpage_env_googletagmanagerid
+            - name: APP_DESCRIPTION
+              valueFrom:
+                secretKeyRef:
+                  key: latest
+                  name: app_mainpage_env_appdescription
+            - name: APP_KEYWORDS
+              valueFrom:
+                secretKeyRef:
+                  key: latest
+                  name: app_mainpage_env_appkeywords
           resources:
             limits:
               cpu: 1000m
