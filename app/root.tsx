@@ -22,6 +22,7 @@ export const loader: LoaderFunction = async () => {
 		description: process.env.APP_DESCRIPTION,
 		author: process.env.APP_AUTHOR,
 		version: process.env.APP_VERSION,
+		gtm: process.env.GOOGLE_TAG_MANAGER,
 	});
 };
 
@@ -60,22 +61,37 @@ export const meta: MetaFunction = () => {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-	const { appName, keywords, description, author, version } =
+	const { appName, keywords, description, gtm } =
 		useLoaderData<typeof loader>();
 
 	return (
 		<html lang="en">
 			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+						(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+						new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+						j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+						'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+						})(window,document,'script','dataLayer','${gtm}');`,
+					}}
+				></script>
 				<meta charSet="utf-8" />
+				<meta name="robots" content="index, follow" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="keywords" content={keywords} />
 				<meta name="description" content={description} />
-				<meta name="author" content={author} />
-				<meta name="version" content={version} />
 				<Meta />
 				<Links />
 			</head>
 			<body>
+				<noscript
+					dangerouslySetInnerHTML={{
+						__html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${gtm}"
+						height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+					}}
+				></noscript>
 				<ThemeProvider attribute="class" defaultTheme="dark">
 					<Theme
 						accentColor="yellow"
