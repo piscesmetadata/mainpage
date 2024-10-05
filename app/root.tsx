@@ -14,6 +14,7 @@ import tailwind from './tailwind.css?url';
 import { ThemeProvider } from 'next-themes';
 import { Flex, Grid, Theme } from '@radix-ui/themes';
 import MenuNav from '~/components/shared/MenuNav';
+import { useEffect } from 'react'; // Asegúrate de importar useEffect
 
 export const loader: LoaderFunction = async () => {
 	return json({
@@ -45,12 +46,11 @@ export const links: LinksFunction = () => [
 ];
 
 export const meta: MetaFunction = () => {
-	const { appName, keywords, description, author, version } =
+	const { appName, description, author, version } =
 		useLoaderData<typeof loader>();
 
 	return [
 		{ title: appName },
-		{ keywords: keywords },
 		{ description: description },
 		{ author: author },
 		{ version: version },
@@ -64,19 +64,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	const { appName, keywords, description, gtm } =
 		useLoaderData<typeof loader>();
 
-	return (
-		<html lang="en">
-			<head>
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `
-						(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	useEffect(() => {
+		const thereIsSomeScript = document.querySelector('script[src*="gtm.js"]');
+
+		if (!thereIsSomeScript) {
+			const gtmScript = document.createElement('script');
+			gtmScript.innerHTML = `
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 						new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 						j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-						})(window,document,'script','dataLayer','${gtm}');`,
-					}}
-				></script>
+						})(window,document,'script','dataLayer','${gtm}');
+		`;
+			document.head.appendChild(gtmScript);
+		}
+	}, [gtm]);
+
+	return (
+		<html lang="en">
+			<head>
 				<meta charSet="utf-8" />
 				<meta name="robots" content="index, follow" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -86,12 +92,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				<noscript
-					dangerouslySetInnerHTML={{
-						__html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${gtm}"
-						height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-					}}
-				></noscript>
 				<ThemeProvider attribute="class" defaultTheme="dark">
 					<Theme
 						accentColor="yellow"

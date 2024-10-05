@@ -50,9 +50,9 @@ export default function MenuNav({ title }: MenuNavProps) {
 					{title}
 				</Text>
 
-				<button className="md:hidden z-50" onClick={toggleMenu}>
+				{/* <button className="md:hidden z-50" onClick={toggleMenu}>
 					{isMenuOpen ? '✕' : '☰'}
-				</button>
+				</button> */}
 
 				<Flex gap="7" className="hidden">
 					<span>
