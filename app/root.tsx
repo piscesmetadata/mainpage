@@ -99,7 +99,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 									gapX="1"
 								>
 									<div className="col-span-12 lg:col-start-2 md:col-span-10 px-[1.588rem] md:px-[3.188rem]">
-										<MenuNav title={appName} />
+										{/*<MenuNav title={appName} />*/}
 									</div>
 								</Grid>
 								<section className="flex-1 h-full w-full">{children}</section>
