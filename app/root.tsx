@@ -14,7 +14,7 @@ import tailwind from './tailwind.css?url';
 import { ThemeProvider } from 'next-themes';
 import { Flex, Grid, Theme } from '@radix-ui/themes';
 import MenuNav from '~/components/shared/MenuNav';
-import { useEffect } from 'react'; // Asegúrate de importar useEffect
+import { useEffect } from 'react';
 
 export const loader: LoaderFunction = async () => {
 	return json({

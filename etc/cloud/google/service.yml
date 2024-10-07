@@ -39,6 +39,8 @@ spec:
             failureThreshold: 1
             tcpSocket:
               port: 8080
+        # B) Serving the app container "remix" listening at PORT 3000
+        # The main application container. This is where the main application code lives.
         - image: '{image-placeholder}'
           name: app
           env:
